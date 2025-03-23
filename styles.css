@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #f8ede3, #d5c1ac); /* Soft pastel gradient */
+    color: #3B5249;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+.welcome-message {
+    font-size: 40px;
+    color: #3B5249;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.welcome-message span {
+    color: #E06C9F;
+    font-weight: 900;
+}
+
+.subtext {
+    font-size: 16px;
+    color: #4A4A4A;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.container {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    color: #3B5249;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    background: #F2E8DF;
+    border-radius: 10px;
+    padding: 8px;
+    width: 90%;
+}
+
+.input-box i {
+    color: #3B5249;
+    padding: 5px;
+}
+
+input {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #E06C9F;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #C05A85;
+    transform: scale(1.05);
+}
+
+.register-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #E06C9F;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

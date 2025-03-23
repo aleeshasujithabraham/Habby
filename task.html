@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Goals</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="sectionDaily">
+        <h1>Daily Goals</h1>
+        <div class="task-container" id="taskContainer"></div>
+        <input type="text" id="taskInput" placeholder="Add a new task" required>
+        <input type="date" id="taskDate" required>
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <script>
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || {};
+
+        function loadTasks() {
+            document.getElementById('taskContainer').innerHTML = '';
+            for (let task in tasks) {
+                createTaskElement(task, tasks[task]);
+            }
+        }
+
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskDate = document.getElementById('taskDate');
+            const taskText = taskInput.value.trim();
+            const taskTime = taskDate.value;
+
+            if (taskText && taskTime) {
+                if (!tasks[taskText]) {
+                    tasks[taskText] = { streak: 0, date: taskTime };
+                }
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                createTaskElement(taskText, tasks[taskText]);
+                taskInput.value = '';
+                taskDate.value = '';
+            } else {
+                alert('Please enter a task and a date.');
+            }
+        }
+
+        function createTaskElement(taskText, taskData) {
+            const taskDiv = document.createElement('div');
+            taskDiv.className = 'task';
+            taskDiv.innerHTML = `
+                <span>${taskText} - ${new Date(taskData.date).toLocaleDateString()} 🔥 Streak: <span id="streak-${taskText}">${taskData.streak}</span> days</span>
+                <button onclick="increaseStreak('${taskText}')" class="myb">✅</button>
+                <button onclick="deleteTask('${taskText}', this)" class="myb">🗑️</button>
+            `;
+            document.getElementById('taskContainer').appendChild(taskDiv);
+        }
+
+        function increaseStreak(taskText) {
+            tasks[taskText].streak++;
+            document.getElementById(`streak-${taskText}`).innerText = tasks[taskText].streak;
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function deleteTask(taskText, button) {
+            delete tasks[taskText];
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            button.parentElement.remove();
+        }
+
+        loadTasks();
+    </script>
+</body>
+</html>
